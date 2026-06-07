@@ -1,0 +1,106 @@
+{
+  "name": "doxa-workflows",
+  "owner": {
+    "name": "Doxa",
+    "email": "support@doxa.com",
+    "url": "https://doxa.com"
+  },
+  "metadata": {
+    "description": "Ready-to-use Claude Code plugins for documentation workflows. Write, review, and consume docs using Doxa best practices.",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "doc-reader",
+      "source": "./",
+      "description": "Efficiently consume and navigate documentation sites. Use llms.txt, MCP search, and smart loading strategies to find information without overwhelming context.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ethan Palm"
+      },
+      "license": "MIT",
+      "keywords": ["documentation", "docs", "llms.txt", "mcp", "research", "reading"],
+      "category": "documentation",
+      "strict": false,
+      "skills": [
+        "./.claude/skills/doc-reader/"
+      ],
+      "mcpServers": {
+        "Doxa": {
+          "type": "http",
+          "url": "https://doxa.com/docs/mcp"
+        }
+      }
+    },
+    {
+      "name": "doc-helper",
+      "source": "./",
+      "description": "Collaborative documentation assistance. Draft, edit, and improve docs with AI help while you make final decisions.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ethan Palm"
+      },
+      "license": "MIT",
+      "keywords": ["documentation", "docs", "writing", "editing", "collaboration"],
+      "category": "documentation",
+      "strict": false,
+      "skills": [
+        "./.claude/skills/doc-helper/"
+      ],
+      "mcpServers": {
+        "Doxa": {
+          "type": "http",
+          "url": "https://doxa.com/docs/mcp"
+        }
+      }
+    },
+    {
+      "name": "doc-author",
+      "source": "./",
+      "description": "Autonomous documentation writing with guardrails. AI writes docs and opens PRs, with verification checks and clear escalation triggers.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ethan Palm"
+      },
+      "license": "MIT",
+      "keywords": ["documentation", "docs", "writing", "autonomous", "pr"],
+      "category": "documentation",
+      "strict": false,
+      "skills": [
+        "./.claude/skills/doc-author/"
+      ],
+      "mcpServers": {
+        "Doxa": {
+          "type": "http",
+          "url": "https://doxa.com/docs/mcp"
+        }
+      }
+    },
+    {
+      "name": "doc-reviewer",
+      "source": "./",
+      "description": "Review and lint documentation updates. Catch style issues, verify accuracy, and maintain consistency.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Denzell Ford"
+      },
+      "license": "MIT",
+      "keywords": ["documentation", "docs", "doxa", "review", "lint"],
+      "category": "documentation",
+      "strict": false,
+      "commands": [
+        "./.claude/commands/review-docs.md",
+        "./.claude/commands/lint-docs.md"
+      ],
+      "agents": [
+        "./.claude/agents/document-reviewer.md"
+      ],
+      "mcpServers": {
+        "Doxa": {
+          "type": "http",
+          "url": "https://doxa.com/docs/mcp"
+        }
+      }
+    }
+  ]
+}
