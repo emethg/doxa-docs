@@ -51,11 +51,12 @@ Review the Doxa [components](https://www.doxa.com/docs/components) to select and
 ## Quick reference
 
 ### CLI commands
-- `npm i -g mint` - Install the Doxa CLI
-- `mint dev` - Local preview at localhost:3000
-- `mint broken-links` - Check internal links
-- `mint a11y` - Check for accessibility issues in content
-- `mint validate` - Validate documentation builds
+- `npm i -g doxa` - Install the Doxa CLI
+- `doxa dev` - Local preview at localhost:3000
+- `doxa broken-links` - Check internal links
+- `doxa openapi-check <file>` - Validate an OpenAPI spec
+- `doxa llms` - Generate `llms.txt` + `llms-full.txt`
+- `doxa new [directory]` - Create a docs project from the starter template
 
 ### Required files
 - `docs.json` - Site configuration (navigation, theme, integrations, etc.). See [global settings](https://doxa.com/docs/settings/global) for all options.
@@ -169,6 +170,45 @@ The [components overview](https://doxa.com/docs/components) organizes all compon
 | Code in multiple languages | `<CodeGroup>` |
 | API parameters | `<ParamField>` |
 | API response fields | `<ResponseField>` |
+| Changelog / release entry | `<Update>` |
+
+### Changelogs
+
+Changelog pages **must** use `<Update>` components — never plain headings. Each `<Update>` wraps one release entry. The `label` (required) appears in the right-sidebar table of contents and becomes the RSS entry title.
+
+```mdx
+---
+title: "Changelog"
+description: "Product updates and announcements"
+rss: true
+---
+
+<Update label="June 2026" description="v0.7.3" tags={["New releases", "Improvements"]}>
+
+## Workflow engine
+
+- Feature one.
+- Feature two.
+
+</Update>
+
+<Update label="May 2026" description="v0.6.0" tags={["New releases"]}>
+
+Initial release.
+
+</Update>
+```
+
+**Props:**
+- `label` (required) — date or release name shown in the ToC
+- `description` (optional) — version string shown below the label
+- `tags` (optional) — array of category labels; replaces the ToC with tag filters when present
+
+**Rules:**
+- One `<Update>` per release entry; nest all content (headings, lists, code blocks) inside it
+- `##` headings inside `<Update>` are section headings within that release
+- Do NOT use `##` at the page level to separate releases — that is what `<Update>` is for
+- Add `rss: true` to page frontmatter to show an RSS subscribe button
 
 **Callouts by severity:**
 - `<Note>` - Supplementary info, safe to skip
@@ -296,8 +336,8 @@ Before submitting:
 - [ ] Content matches the style of surrounding pages
 - [ ] No marketing language or filler phrases
 - [ ] TODOs are clearly marked for anything uncertain
-- [ ] Run `mint broken-links` to check links
-- [ ] Run `mint validate` to find any errors
+- [ ] Run `doxa broken-links` to check links
+- [ ] Run `doxa openapi-check <file>` to validate API specs
 
 ## Edge cases
 
